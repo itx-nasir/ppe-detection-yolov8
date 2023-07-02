@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPE Detection - YOLOv8</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🛡️ PPE Detection</h1>
+            <p>Advanced Personal Protective Equipment Detection using YOLOv8</p>
+        </header>
+
+        <div class="main-content">
+            <div class="upload-card">
+                <h2 class="card-title">📤 Upload Image</h2>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">Drag & drop your image here</div>
+                    <div class="upload-subtext">or click to browse files</div>
+                    <input type="file" id="imageInput" class="file-input" accept="image/*">
+                </div>
+                <button class="upload-btn" id="uploadBtn" onclick="uploadImage()">Detect PPE</button>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing image...</p>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <h2 class="card-title">🔍 Detection Results</h2>
+                <div id="result">
+                    <div class="no-result">
+                        <div style="font-size: 3rem; margin-bottom: 15px;">🖼️</div>
+                        <p>Upload an image to see detection results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">YOLOv8</span>
+                <span class="stat-label">Model</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Real-time</span>
+                <span class="stat-label">Detection</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">High</span>
+                <span class="stat-label">Accuracy</span>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 PPE Detection System | Built with FastAPI & YOLOv8</p>
+    </footer>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
