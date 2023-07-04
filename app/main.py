@@ -16,7 +16,7 @@ def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/predict/")
-async def predict_endpoint(file: UploadFile = File(...), conf: float = 0.5):
+async def predict_endpoint(file: UploadFile = File(...), conf: float = 0.5, model: str = "v1"):
     """
     Accept an uploaded image and return annotated image with detected PPE
     """
@@ -24,7 +24,7 @@ async def predict_endpoint(file: UploadFile = File(...), conf: float = 0.5):
     image = await read_image(file)
     
     # Run prediction
-    annotated_image, boxes, classes = predict(image, conf)
+    annotated_image, boxes, classes = predict(image, conf, model)
     
     # Encode image as JPEG for response
     img_bytes = encode_image(annotated_image)
