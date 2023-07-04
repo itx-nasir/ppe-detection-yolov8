@@ -72,14 +72,31 @@ body {
     gap: 10px;
 }
 
-.upload-area {
-    border: 3px dashed #cbd5e0;
-    border-radius: 15px;
-    padding: 40px;
-    text-align: center;
-    transition: all 0.3s ease;
+.model-selector {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.model-selector label {
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.model-select {
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: white;
     cursor: pointer;
-    background: #f8fafc;
+    transition: border-color 0.3s ease;
+}
+
+.model-select:focus {
+    outline: none;
+    border-color: #667eea;
 }
 
 .upload-area:hover, .upload-area.dragover {
