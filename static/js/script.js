@@ -77,6 +77,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData();
         formData.append('file', file);
+        
+        // Get selected model
+        const selectedModel = document.getElementById('modelSelect').value;
+        formData.append('model', selectedModel);
 
         try {
             const response = await fetch('/predict/', {
@@ -85,15 +89,23 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (response.ok) {
-                const blob = await response.blob();
-                const imageUrl = URL.createObjectURL(blob);
-                showResult(imageUrl);
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    // Handle error response
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Unknown error occurred');
+                } else {
+                    // Handle successful image response
+                    const blob = await response.blob();
+                    const imageUrl = URL.createObjectURL(blob);
+                    showResult(imageUrl);
+                }
             } else {
                 throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
         } catch (error) {
             console.error('Error:', error);
-            showError('Error processing image. Please try again.');
+            showError(error.message || 'Error processing image. Please try again.');
         } finally {
             setLoadingState(false);
         }
