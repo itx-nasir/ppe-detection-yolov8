@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Request
+from fastapi import FastAPI, UploadFile, File, Request, Form
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -16,10 +16,13 @@ def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/predict/")
-async def predict_endpoint(file: UploadFile = File(...), conf: float = 0.5, model: str = "v1"):
+async def predict_endpoint(file: UploadFile = File(...), conf: float = Form(0.5), model: str = Form("v1")):
     """
     Accept an uploaded image and return annotated image with detected PPE
     """
+    print(f"DEBUG: Received model parameter: '{model}'")  # Debug log
+    print(f"DEBUG: Received conf parameter: {conf}")      # Debug log
+    
     # Read image
     image = await read_image(file)
     
