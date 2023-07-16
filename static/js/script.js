@@ -82,9 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedModel = document.getElementById('modelSelect').value;
         formData.append('model', selectedModel);
         
-        console.log('DEBUG: Frontend - Selected model:', selectedModel);  // Debug log
-        console.log('DEBUG: Frontend - FormData model:', formData.get('model'));  // Debug log
-
         try {
             const response = await fetch('/predict/', {
                 method: 'POST',
