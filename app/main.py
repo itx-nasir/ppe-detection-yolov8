@@ -20,8 +20,6 @@ async def predict_endpoint(file: UploadFile = File(...), conf: float = Form(0.5)
     """
     Accept an uploaded image and return annotated image with detected PPE
     """
-    print(f"DEBUG: Received model parameter: '{model}'")  # Debug log
-    print(f"DEBUG: Received conf parameter: {conf}")      # Debug log
     
     # Read image
     image = await read_image(file)
